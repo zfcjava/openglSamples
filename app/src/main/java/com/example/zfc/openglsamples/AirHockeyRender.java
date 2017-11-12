@@ -10,7 +10,32 @@ import javax.microedition.khronos.opengles.GL10;
  * Created by zfc on 2017/11/11.
  */
 
-class FirstOpelglRender implements GLSurfaceView.Renderer {
+class AirHockeyRender implements GLSurfaceView.Renderer {
+    //由于在gl中基本单元只有 点 , 线, 三角形，所以不能直接定义矩形顶点
+//    float[] tableVertices = {
+//            0f, 0f,
+//            9f, 14f,
+//            0f, 14,
+//            9f, 0f
+//    };
+    float[] tableVerticesWithTriangles = {
+            //triangle1
+            0f, 0f,
+            9f, 14f,
+            0, 14f,
+//            triagnle2
+            0f, 0f,
+            9f, 0f,
+            9f, 14f,
+            // line
+            0f, 7f,
+            9f, 7f,
+            //point 1
+            4.5f, 2f,
+            //point 2
+            4.5f, 12f
+    };
+
 
     @Override
     /**

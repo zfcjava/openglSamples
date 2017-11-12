@@ -10,9 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class AirHockeyActivity extends AppCompatActivity {
 
-    private final String TAG = "MainActivity";
+    private final String TAG = "AirHockeyActivity";
     private GLSurfaceView glSurfaceView;
     private boolean renderSet = false;
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             //3.设置合适的上下文环境
             glSurfaceView.setEGLContextClientVersion(2);
             //4.指定渲染器
-            glSurfaceView.setRenderer(new FirstOpelglRender());
+            glSurfaceView.setRenderer(new AirHockeyRender());
 
 
         } else {
