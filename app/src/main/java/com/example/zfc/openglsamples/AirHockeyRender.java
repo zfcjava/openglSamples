@@ -1,7 +1,10 @@
 package com.example.zfc.openglsamples;
 
+import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+
+import com.example.zfc.openglsamples.util.TextResourceReader;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -15,6 +18,7 @@ import javax.microedition.khronos.opengles.GL10;
  */
 
 class AirHockeyRender implements GLSurfaceView.Renderer {
+    private final Context context;
     //由于在gl中基本单元只有 点 , 线, 三角形，所以不能直接定义矩形顶点
 //    float[] tableVertices = {
 //            0f, 0f,
@@ -43,7 +47,8 @@ class AirHockeyRender implements GLSurfaceView.Renderer {
 
     private final FloatBuffer vertexData;
     private static final int BYTES_PER_FLOAT = 4;
-    public AirHockeyRender() {
+    public AirHockeyRender(Context context) {
+        this.context = context;
         //将java层的数组传递给native层
         vertexData = ByteBuffer.allocateDirect(tableVerticesWithTriangles.length * BYTES_PER_FLOAT)
                 .order(ByteOrder.nativeOrder())
@@ -58,6 +63,9 @@ class AirHockeyRender implements GLSurfaceView.Renderer {
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         //1.设置清空屏幕用的颜色
         GLES20.glClearColor(1.0f, 1.0f, 0.0f, 0.0f);
+        //读取着色器
+        String vertexShaderSource = TextResourceReader.readTextFileFromResource(context, R.raw.simple_vertex_shader);
+        String fragmentShaderSource = TextResourceReader.readTextFileFromResource(context, R.raw.simple_fragment_shader);
     }
 
     @Override

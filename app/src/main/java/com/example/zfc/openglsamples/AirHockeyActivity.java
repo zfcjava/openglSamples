@@ -34,8 +34,8 @@ public class AirHockeyActivity extends AppCompatActivity {
             //3.设置合适的上下文环境
             glSurfaceView.setEGLContextClientVersion(2);
             //4.指定渲染器
-            glSurfaceView.setRenderer(new AirHockeyRender());
-
+            glSurfaceView.setRenderer(new AirHockeyRender(this));
+            renderSet = true;
 
         } else {
             Toast.makeText(this, "不支持 openGL 2.0", Toast.LENGTH_SHORT).show();
@@ -67,7 +67,7 @@ public class AirHockeyActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (glSurfaceView != null) {
+        if (glSurfaceView != null && renderSet) {
             glSurfaceView.onResume();
         }
     }
@@ -75,7 +75,7 @@ public class AirHockeyActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (null != glSurfaceView) {
+        if (null != glSurfaceView && renderSet) {
             glSurfaceView.onPause();
         }
     }
