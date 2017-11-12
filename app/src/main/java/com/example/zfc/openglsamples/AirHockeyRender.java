@@ -4,6 +4,7 @@ import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 
+import com.example.zfc.openglsamples.util.ShaderHelper;
 import com.example.zfc.openglsamples.util.TextResourceReader;
 
 import java.nio.ByteBuffer;
@@ -66,6 +67,10 @@ class AirHockeyRender implements GLSurfaceView.Renderer {
         //读取着色器
         String vertexShaderSource = TextResourceReader.readTextFileFromResource(context, R.raw.simple_vertex_shader);
         String fragmentShaderSource = TextResourceReader.readTextFileFromResource(context, R.raw.simple_fragment_shader);
+        //编译着色器代码，获取着色器对象
+        int vertexShader = ShaderHelper.compileVertexShader(vertexShaderSource);
+        int fragmentShader = ShaderHelper.compileVertexShader(fragmentShaderSource);
+        int programId = ShaderHelper.linkProgram(vertexShader, fragmentShader);
     }
 
     @Override
