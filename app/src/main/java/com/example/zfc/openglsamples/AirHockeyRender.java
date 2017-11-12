@@ -3,6 +3,10 @@ package com.example.zfc.openglsamples;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -36,6 +40,16 @@ class AirHockeyRender implements GLSurfaceView.Renderer {
             4.5f, 12f
     };
 
+
+    private final FloatBuffer vertexData;
+    private static final int BYTES_PER_FLOAT = 4;
+    public AirHockeyRender() {
+        //将java层的数组传递给native层
+        vertexData = ByteBuffer.allocateDirect(tableVerticesWithTriangles.length * BYTES_PER_FLOAT)
+                .order(ByteOrder.nativeOrder())
+                .asFloatBuffer();
+
+    }
 
     @Override
     /**
