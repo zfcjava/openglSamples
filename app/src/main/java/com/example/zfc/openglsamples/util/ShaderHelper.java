@@ -80,4 +80,11 @@ public class ShaderHelper {
         return programObjectId;
     }
 
+    public static boolean valideProgram(int programId) {
+        GLES20.glValidateProgram(programId);
+        final int[] program_status = new int[1];
+        GLES20.glGetProgramiv(programId, GLES20.GL_VALIDATE_STATUS, program_status, 0);
+
+        return program_status[0] != 0;
+    }
 }
